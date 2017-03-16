@@ -5,52 +5,19 @@ import java.time.temporal.ChronoUnit;
 /**
  * 
  */
-public class EntradaFoto
+public class EntradaFoto extends Entrada
 {
-    private String usuario;
     private String urlImagen;
     private String titulo;
-    private LocalDateTime momentoPublicacion;
-    private int cantidadMeGusta;
-    private ArrayList<String> comentarios;
 
     /**
      * Constructor for objects of class EntradaFoto
      */
     public EntradaFoto(String autor, String url, String titulo)
     {
-        usuario = autor;
+        super(autor);
         urlImagen = url;
         this.titulo = titulo;
-        momentoPublicacion = LocalDateTime.now();
-        cantidadMeGusta = 0;
-        comentarios = new ArrayList<String>();
-    }
-
-    /**
-     * 
-     */
-    public void meGusta()
-    {
-        cantidadMeGusta++;
-    }
-
-    /**
-     * 
-     */
-    public void unlike()
-    {
-        if(cantidadMeGusta > 0){
-            cantidadMeGusta--;
-        }
-    }
-
-    /**
-     * 
-     */
-    public void addComentario(String text)
-    {
-        comentarios.add(text);
     }
 
     /**
@@ -72,28 +39,20 @@ public class EntradaFoto
     /**
      * 
      */
-    public LocalDateTime getMomentoPublicacion()
-    {
-        return momentoPublicacion;
-    }
-
-    /**
-     * 
-     */
     public String toString()
     {
-        String valorDeRetorno =  usuario + " ha publicado una imagen: " + urlImagen + " " + titulo + " - Hace ";
-        long segundosTranscurridos = (momentoPublicacion.until(LocalDateTime.now(), ChronoUnit.SECONDS));
+        String valorDeRetorno =  getUsuario() + " ha publicado una imagen: " + urlImagen + " " + titulo + " - Hace ";
+        long segundosTranscurridos = (getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS));
         if (segundosTranscurridos > 59) {
             long minutosTranscurridos = segundosTranscurridos/60;
             segundosTranscurridos = segundosTranscurridos%60;
             valorDeRetorno += minutosTranscurridos + " minutos ";
         }
-        valorDeRetorno += segundosTranscurridos + " segundos con " + cantidadMeGusta + " Me gusta.";
-        if(comentarios.isEmpty()){
+        valorDeRetorno += segundosTranscurridos + " segundos con " + getCantidadMeGusta() + " Me gusta.";
+        if(getComentarios().isEmpty()){
             System.out.println("Aun no hay comentarios.");
         }else{
-            valorDeRetorno += " Comentarios: " + comentarios;
+            valorDeRetorno += " Comentarios: " + getComentarios();
         }
         return valorDeRetorno;
     }
