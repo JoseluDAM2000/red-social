@@ -1,5 +1,4 @@
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 /**
  * Write a description of class Entrada here.
@@ -12,8 +11,7 @@ public class Entrada
     private String usuario;
     private LocalDateTime momentoPublicacion;
     private int cantidadMeGusta;
-    private ArrayList<String> comentarios;
-
+    
     /**
      * Constructor for objects of class Entrada
      */
@@ -22,7 +20,6 @@ public class Entrada
         usuario = autor;
         momentoPublicacion = LocalDateTime.now();
         cantidadMeGusta = 0;
-        comentarios = new ArrayList<String>();
     }
     
     /**
@@ -31,14 +28,6 @@ public class Entrada
     public void meGusta()
     {
         cantidadMeGusta++;
-    }
-
-    /**
-     * 
-     */
-    public void addComentario(String text)
-    {
-        comentarios.add(text);
     }
     
     /**
@@ -57,11 +46,6 @@ public class Entrada
     public int getCantidadMeGusta()
     {
         return cantidadMeGusta;
-    }
-    
-    public ArrayList<String> getComentarios()
-    {
-        return comentarios;
     }
     
     public String toString()

@@ -5,7 +5,7 @@ import java.time.temporal.ChronoUnit;
 /**
  * 
  */
-public class EntradaFoto extends Entrada
+public class EntradaFoto extends EntradaConComentario
 {
     private String urlImagen;
     private String titulo;
@@ -41,19 +41,20 @@ public class EntradaFoto extends Entrada
      */
     public String toString()
     {
-        String valorDeRetorno =  getUsuario() + " ha publicado una imagen: " + urlImagen + " " + titulo + " - Hace ";
+        String valorDeRetorno =  getUsuario() + " ha publicado una imagen: \n" + urlImagen + "\n" + titulo + "Hace ";
         long segundosTranscurridos = (getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS));
         if (segundosTranscurridos > 59) {
             long minutosTranscurridos = segundosTranscurridos/60;
             segundosTranscurridos = segundosTranscurridos%60;
             valorDeRetorno += minutosTranscurridos + " minutos ";
         }
-        valorDeRetorno += segundosTranscurridos + " segundos con " + getCantidadMeGusta() + " Me gusta.";
+        valorDeRetorno += segundosTranscurridos + " segundos \nTiene " + getCantidadMeGusta() + " Me gusta. \n";
         if(getComentarios().isEmpty()){
-            System.out.println("Aun no hay comentarios.");
+            System.out.println("Aun no hay comentarios. \n");
         }else{
-            valorDeRetorno += " Comentarios: " + getComentarios();
+            valorDeRetorno += " Comentarios: " + getComentarios() + "\n";
         }
+        System.out.println(valorDeRetorno);
         return valorDeRetorno;
     }
 }
