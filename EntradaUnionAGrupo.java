@@ -15,19 +15,19 @@ public class EntradaUnionAGrupo extends Entrada
     {
         super(usuario);
         this.grupo = grupo;
-        System.out.println(usuario + " Se unió al grupo: " + grupo);
+        System.out.println(usuario + " se unió al grupo: " + grupo);
     }
     
     public String toString()
     {
-        String valorDeRetorno = getUsuario() + " Se unió al grupo: " + grupo + "\nHace ";
+        String valorDeRetorno = getUsuario() + " se unió al grupo: \n" + grupo + "\nHace ";
         long segundosTranscurridos = (getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS));
         if (segundosTranscurridos > 59) {
             long minutosTranscurridos = segundosTranscurridos/60;
             segundosTranscurridos = segundosTranscurridos%60;
             valorDeRetorno += minutosTranscurridos + " minutos ";
         }
-        valorDeRetorno += segundosTranscurridos + " segundos \nTiene" + getCantidadMeGusta() + " Me gusta.";
+        valorDeRetorno += segundosTranscurridos + " segundos \nTiene " + getCantidadMeGusta() + " Me gusta.";
         System.out.println(valorDeRetorno);
         return valorDeRetorno;
     }

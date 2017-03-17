@@ -41,7 +41,7 @@ public class EntradaFoto extends EntradaConComentario
      */
     public String toString()
     {
-        String valorDeRetorno =  getUsuario() + " ha publicado una imagen: \n" + urlImagen + "\n" + titulo + "Hace ";
+        String valorDeRetorno =  getUsuario() + " ha publicado una imagen: \n" + urlImagen + "\n" + titulo + "\nHace ";
         long segundosTranscurridos = (getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS));
         if (segundosTranscurridos > 59) {
             long minutosTranscurridos = segundosTranscurridos/60;
@@ -50,9 +50,12 @@ public class EntradaFoto extends EntradaConComentario
         }
         valorDeRetorno += segundosTranscurridos + " segundos \nTiene " + getCantidadMeGusta() + " Me gusta. \n";
         if(getComentarios().isEmpty()){
-            System.out.println("Aun no hay comentarios. \n");
+            valorDeRetorno += "Aun no hay comentarios. \n";
         }else{
-            valorDeRetorno += " Comentarios: " + getComentarios() + "\n";
+            valorDeRetorno += " Comentarios: \n";
+            for(String comentario : getComentarios()){
+                valorDeRetorno += comentario + "\n";
+            }
         }
         System.out.println(valorDeRetorno);
         return valorDeRetorno;

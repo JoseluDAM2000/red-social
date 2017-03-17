@@ -40,9 +40,12 @@ public class EntradaTexto extends EntradaConComentario
         }
         valorDeRetorno += segundosTranscurridos + " segundos \nTiene " + getCantidadMeGusta() + " Me gusta. \n";
         if(getComentarios().isEmpty()){
-            System.out.println("Aun no hay comentarios. \n");
+            valorDeRetorno += "Aun no hay comentarios. \n";
         }else{
-            valorDeRetorno += "Comentarios: " + getComentarios() + "\n";
+            valorDeRetorno += "Comentarios: \n";
+            for(String comentario : getComentarios()){
+                valorDeRetorno += comentario + "\n";
+            }
         }
         System.out.println(valorDeRetorno);
         return valorDeRetorno;
