@@ -28,7 +28,11 @@ public class EntradaUnionAGrupo extends Entrada
             valorDeRetorno += minutosTranscurridos + " minutos ";
         }
         valorDeRetorno += segundosTranscurridos + " segundos \nTiene " + getCantidadMeGusta() + " Me gusta.";
-        System.out.println(valorDeRetorno);
         return valorDeRetorno;
+    }
+    
+    public void mostrar()
+    {
+        System.out.println(this);
     }
 }

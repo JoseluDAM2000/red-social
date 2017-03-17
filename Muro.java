@@ -5,42 +5,22 @@ import java.util.ArrayList;
  */
 public class Muro
 {
-    private ArrayList<EntradaTexto> mensajes;
-    private ArrayList<EntradaFoto> fotos;
-    private ArrayList<EntradaUnionAGrupo> unionesAGrupos;
+    private ArrayList<Entrada> entradas;
 
     /**
      * Constructor for objects of class Muro
      */
     public Muro()
     {
-        mensajes = new ArrayList<EntradaTexto>();
-        fotos = new ArrayList<EntradaFoto>();
-        unionesAGrupos = new ArrayList<EntradaUnionAGrupo>();
+        entradas = new ArrayList<Entrada>();
     }
 
     /**
      * 
      */
-    public void addEntradaTexto(EntradaTexto entradaTexto)
+    public void addEntrada(Entrada entrada)
     {
-        mensajes.add(entradaTexto);
-    }
-
-    /**
-     * 
-     */
-    public void addEntradaFoto(EntradaFoto entradaFoto)
-    {
-        fotos.add(entradaFoto);
-    }
-    
-    /**
-     * 
-     */
-    public void addEntradaUnionAGrupo(EntradaUnionAGrupo entradaUnionAGrupo)
-    {
-        unionesAGrupos.add(entradaUnionAGrupo);
+        entradas.add(entrada);
     }
 
     /**
@@ -48,6 +28,15 @@ public class Muro
      */
     public String toString()
     {
-        return mensajes.toString() + "\n" + fotos.toString() + "\n" + unionesAGrupos.toString();
+        String valorDeRetorno = "";
+        for(Entrada entrada : entradas){
+            valorDeRetorno += entrada + "\n";
+        }
+        return valorDeRetorno;
+    }
+    
+    public void mostrar()
+    {
+        System.out.println(this);
     }
 }

@@ -57,7 +57,11 @@ public class EntradaFoto extends EntradaConComentario
                 valorDeRetorno += comentario + "\n";
             }
         }
-        System.out.println(valorDeRetorno);
         return valorDeRetorno;
+    }
+    
+    public void mostrar()
+    {
+        System.out.println(this);
     }
 }

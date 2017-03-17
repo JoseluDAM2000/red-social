@@ -52,4 +52,8 @@ public class Entrada
     {
         return null;
     }
+    
+    public void mostrar()
+    {
+    }
 }
