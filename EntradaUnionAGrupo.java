@@ -20,14 +20,8 @@ public class EntradaUnionAGrupo extends Entrada
     
     public String toString()
     {
-        String valorDeRetorno = getUsuario() + " se unió al grupo: \n" + grupo + "\nHace ";
-        long segundosTranscurridos = (getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS));
-        if (segundosTranscurridos > 59) {
-            long minutosTranscurridos = segundosTranscurridos/60;
-            segundosTranscurridos = segundosTranscurridos%60;
-            valorDeRetorno += minutosTranscurridos + " minutos ";
-        }
-        valorDeRetorno += segundosTranscurridos + " segundos \nTiene " + getCantidadMeGusta() + " Me gusta.";
+        String valorDeRetorno = super.toString();
+        valorDeRetorno += "Se unió al grupo: \n" + grupo + "\n";
         return valorDeRetorno;
     }
     

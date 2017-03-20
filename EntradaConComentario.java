@@ -31,6 +31,15 @@ public class EntradaConComentario extends Entrada
     
     public String toString()
     {
-        return null;
+        String valorDeRetorno = super.toString();
+        if(comentarios.isEmpty()){
+            valorDeRetorno += "Aun no hay comentarios. \n";
+        }else{
+            valorDeRetorno += "Comentarios: \n";
+            for(String comentario : comentarios){
+                valorDeRetorno += comentario + "\n";
+            }
+        }
+        return valorDeRetorno;
     }
 }

@@ -31,22 +31,8 @@ public class EntradaTexto extends EntradaConComentario
      */
     public String toString()
     {
-        String valorDeRetorno =  getUsuario() + " ha publicado un mensaje: \n" + mensaje + "\n" + "Hace ";
-        long segundosTranscurridos = (getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS));
-        if (segundosTranscurridos > 59) {
-            long minutosTranscurridos = segundosTranscurridos/60;
-            segundosTranscurridos = segundosTranscurridos%60;
-            valorDeRetorno += minutosTranscurridos + " minutos ";
-        }
-        valorDeRetorno += segundosTranscurridos + " segundos \nTiene " + getCantidadMeGusta() + " Me gusta. \n";
-        if(getComentarios().isEmpty()){
-            valorDeRetorno += "Aun no hay comentarios. \n";
-        }else{
-            valorDeRetorno += "Comentarios: \n";
-            for(String comentario : getComentarios()){
-                valorDeRetorno += comentario + "\n";
-            }
-        }
+        String valorDeRetorno =  super.toString();
+        valorDeRetorno +=  "Ha publicado un mensaje: \n" + mensaje + "\n";
         return valorDeRetorno;
     }
     

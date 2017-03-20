@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Write a description of class Entrada here.
@@ -50,7 +51,15 @@ public class Entrada
     
     public String toString()
     {
-        return null;
+        String valorDeRetorno =  getUsuario() + " hace ";
+        long segundosTranscurridos = (getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS));
+        if (segundosTranscurridos > 59) {
+            long minutosTranscurridos = segundosTranscurridos/60;
+            segundosTranscurridos = segundosTranscurridos%60;
+            valorDeRetorno += minutosTranscurridos + " minutos ";
+        }
+        valorDeRetorno += segundosTranscurridos + " segundos \n" + getCantidadMeGusta() + " Me gusta. \n";
+        return valorDeRetorno;
     }
     
     public void mostrar()
