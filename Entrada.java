@@ -65,4 +65,9 @@ public class Entrada
     public void mostrar()
     {
     }
+    
+    public int getCantidadDeDatosAsociadosALaEntrada()
+    {
+        return 3;
+    }
 }

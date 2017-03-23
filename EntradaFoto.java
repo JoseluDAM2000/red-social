@@ -50,4 +50,9 @@ public class EntradaFoto extends EntradaConComentario
     {
         System.out.println(this);
     }
+    
+    public int getCantidadDeDatosAsociadosALaEntrada()
+    {
+        return 6;
+    }
 }

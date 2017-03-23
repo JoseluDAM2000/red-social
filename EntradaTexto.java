@@ -40,4 +40,9 @@ public class EntradaTexto extends EntradaConComentario
     {
         System.out.println(this);
     }
+    
+    public int getCantidadDeDatosAsociadosALaEntrada()
+    {
+        return 5;
+    }
 }

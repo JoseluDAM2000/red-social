@@ -39,4 +39,13 @@ public class Muro
     {
         System.out.println(this);
     }
+    
+    public void verCantidadDeDatosPorEntrada()
+    {
+        String valorDeRetorno = "";
+        for(Entrada entrada : entradas){
+            valorDeRetorno += entrada.getCantidadDeDatosAsociadosALaEntrada() + "\n";
+        }
+        System.out.println(valorDeRetorno);
+    }
 }
