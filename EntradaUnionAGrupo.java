@@ -34,4 +34,9 @@ public class EntradaUnionAGrupo extends Entrada
     {
         return 4;
     }
+    
+    public String mostrarDatosExclusivos()
+    {
+        return "Grupo: " + grupo;
+    }
 }

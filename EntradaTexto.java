@@ -45,4 +45,9 @@ public class EntradaTexto extends EntradaConComentario
     {
         return 5;
     }
+    
+    public String mostrarDatosExclusivos()
+    {
+        return "Mensaje: " + mensaje;
+    }
 }

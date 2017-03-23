@@ -55,4 +55,9 @@ public class EntradaFoto extends EntradaConComentario
     {
         return 6;
     }
+    
+    public String mostrarDatosExclusivos()
+    {
+        return "URL de la imagen: " + urlImagen + "\n Titulo: " + titulo;
+    }
 }
