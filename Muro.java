@@ -55,25 +55,32 @@ public class Muro
         int contador = 0;
         while(contador < entradas.size()){
             Entrada entradaActual = entradas.get(contador);
-            if(entradaActual.getUsuario() == usuario){
+            if(entradaActual.getUsuario() == usuario || usuario == null){
+                String valorActual = "";
+                
                 switch(entradaActual.getClass().getSimpleName()){
                     case "EntradaUnionAGrupo":
                     EntradaUnionAGrupo entradaUnionAGrupo = (EntradaUnionAGrupo) entradaActual;
-                    valorDeRetorno += entradaUnionAGrupo.mostrarDatosExclusivos() + "\n";
+                    valorActual = entradaUnionAGrupo.mostrarDatosExclusivos() + "\n";
                     break;
-    
+
                     case "EntradaTexto":
                     EntradaTexto entradaTexto = (EntradaTexto) entradaActual;
-                    valorDeRetorno += entradaTexto.mostrarDatosExclusivos() + "\n";
+                    valorActual = entradaTexto.mostrarDatosExclusivos() + "\n";
                     break;
-                    
+
                     case "EntradaFoto":
                     EntradaFoto entradaFoto = (EntradaFoto) entradaActual;
-                    valorDeRetorno += entradaFoto.mostrarDatosExclusivos() + "\n";
+                    valorActual = entradaFoto.mostrarDatosExclusivos() + "\n";
                     break;
-                    
+
                     default:
                 }
+                
+                if(entradaActual.getClass().getSimpleName() == tipoDeEntrada || tipoDeEntrada == null){
+                    valorDeRetorno += valorActual;
+                }
+                
             }
             contador++;
         }
