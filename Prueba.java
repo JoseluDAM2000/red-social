@@ -39,8 +39,8 @@ public class Prueba
         muro1 = new Muro();
         entradaT1 = new EntradaTexto("Perico", "He comprado leche");
         entradaT2 = new EntradaTexto("DGT", "Si bebes no conduzcas");
-        entradaF1 = new EntradaFoto("Maria", "imagen.png", "Mi gato bigotitos");
-        entradaF2 = new EntradaFoto("Maria", "imagen2.png", "Mi gato calcetín");
+        entradaF1 = new EntradaFoto("Maria", "recursos/imagen1.png", "Mi gato bigotitos");
+        entradaF2 = new EntradaFoto("Maria", "recursos/imagen2.png", "Mi gato calcetín");
         entradaU1 = new EntradaUnionAGrupo("Antonio", "Amantes de los loros");
         entradaU2 = new EntradaUnionAGrupo("Carlos", "Casas chulis");
         muro1.addEntrada(entradaF1);
