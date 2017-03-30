@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.awt.Desktop;
 
 /**
  * 
@@ -96,107 +97,98 @@ public class Muro
     public void mostrarMuroEnNavegador()
     {
         Path rutaArchivo = Paths.get("muro.html");
-
         try  
         {
-            File lectura1 = new File("recursos/pagina.html");
+            File plantillaPagina = new File("recursos/pagina.html");
             BufferedWriter archivo = Files.newBufferedWriter(rutaArchivo);
-            Scanner sc1 = new Scanner(lectura1);
+            Scanner sc1 = new Scanner(plantillaPagina);
             while (sc1.hasNextLine()){
                 String lineaActual = sc1.nextLine();
-
                 if(lineaActual.contains("CONTENIDO")){
-
                     for(int i = entradas.size() - 1; i >= 0; i--){
-                        String[] entradaActual = entradas.get(i).toString().split("\n");
-                        String[] primeraLinea = entradaActual[0].split(" ");
-                        File lectura2 = new File("recursos/entrada.html");
-                        Scanner sc2 = new Scanner(lectura2);
-
+                        Entrada entradaActual = entradas.get(i);
+                        String[] lineasEntradaActual = entradaActual.toString().split("\n");
+                        File plantillaEntrada = new File("recursos/entrada.html");
+                        Scanner sc2 = new Scanner(plantillaEntrada);
                         while (sc2.hasNextLine()){
                             lineaActual = sc2.nextLine();
                             int lineasDesplazadas = 0;
-                            
-                            if(!entradas.get(i).getClass().getSimpleName().equals("EntradaUnionAGrupo")){
-                                EntradaConComentario entradaAux = (EntradaConComentario) entradas.get(i);
+                            if(!entradaActual.getClass().getSimpleName().equals("EntradaUnionAGrupo")){
+                                EntradaConComentario entradaAux = (EntradaConComentario) entradaActual;
                                 lineasDesplazadas = entradaAux.getComentarios().size();
                             }
-
-                            if(lineaActual.contains("Super") || lineaActual.contains(entradas.get(i).getClass().getSimpleName())){
+                            if(lineaActual.contains("Super") || lineaActual.contains(entradaActual.getClass().getSimpleName())){
                                 boolean comprobar = true;
                                 if(lineaActual.contains("ENTRADAUSUARIO")){
-                                    lineaActual = primeraLinea[0];
+                                    lineaActual = entradaActual.getUsuario();
                                     comprobar = false;
                                 }
-
                                 if(lineaActual.contains("ENTRADATIPODEENTRADA") && comprobar){
-                                    if(entradas.get(i).getClass().getSimpleName().equals("EntradaUnionAGrupo")){
-                                        lineaActual = entradaActual[2];
-                                    }else{
-                                        lineaActual = entradaActual[3 + lineasDesplazadas];
+                                    switch(entradaActual.getClass().getSimpleName()){
+                                        case "EntradaUnionAGrupo":
+                                        lineaActual = lineasEntradaActual[2];
+                                        break;
+                                        default:
+                                        lineaActual = lineasEntradaActual[3 + lineasDesplazadas];
                                     }
                                     comprobar = false;
                                 }
-
                                 if(lineaActual.contains("ENTRADADATOS") && comprobar){
-                                    if(entradas.get(i).getClass().getSimpleName().equals("EntradaUnionAGrupo")){
-                                        lineaActual = entradaActual[3];
-                                    }else if(entradas.get(i).getClass().getSimpleName().equals("EntradaFoto")){
-                                        lineaActual = entradaActual[5 + lineasDesplazadas];
-                                    }else{
-                                        lineaActual = entradaActual[4 + lineasDesplazadas];
+                                    switch(entradaActual.getClass().getSimpleName()){
+                                        case "EntradaUnionAGrupo":
+                                        lineaActual = lineasEntradaActual[3];
+                                        break;
+                                        case "EntradaFoto":
+                                        lineaActual = lineasEntradaActual[5 + lineasDesplazadas];
+                                        break;
+                                        default:
+                                        lineaActual = lineasEntradaActual[4 + lineasDesplazadas];
                                     }
                                     comprobar = false;
                                 }
-
                                 if(lineaActual.contains("ENTRADAURLIMAGEN") && comprobar){
-                                    lineaActual = entradaActual[4 + lineasDesplazadas] +"\">";
+                                    lineaActual = lineasEntradaActual[4 + lineasDesplazadas] +"\">";
                                     comprobar = false;
                                 }
-
                                 if(lineaActual.contains("ENTRADAMEGUSTA") && comprobar){
-                                    lineaActual = entradaActual[1];
+                                    lineaActual = lineasEntradaActual[1];
                                     comprobar = false;
                                 }
-
                                 if(lineaActual.contains("ENTRADAHORA") && comprobar){
-                                    lineaActual = entradaActual[0].substring(entradas.get(i).getUsuario().length(), entradaActual[0].length());
+                                    lineaActual = lineasEntradaActual[0].substring(entradaActual.getUsuario().length(), lineasEntradaActual[0].length());
                                     comprobar = false;
                                 }
-
                                 if(lineaActual.contains("ENTRADACOMENTARIOS") && comprobar){
-                                    EntradaConComentario entradaAux = (EntradaConComentario) entradas.get(i);
+                                    EntradaConComentario entradaAux = (EntradaConComentario) entradaActual;
                                     if(entradaAux.getComentarios().size() != 0){
                                         lineaActual = "";
                                         for(String comentario:entradaAux.getComentarios()){
                                             lineaActual += "&#8226;" + comentario + "<br>\n";
                                         }
                                     }else{
-                                        lineaActual = entradaActual[2];
+                                        lineaActual = lineasEntradaActual[2];
                                     }
                                     comprobar = false;
                                 }
-
                                 archivo.write(lineaActual);
                             }
                         }
-
                         sc2.close();
                         lineaActual = "";
-
                     }
-
                 }
-
                 archivo.write(lineaActual);
             }
             sc1.close();
             archivo.close();
+
+            File htmlFile = new File(rutaArchivo.toString());
+            Desktop.getDesktop().browse(htmlFile.toURI());
+
         }
         catch (Exception e) {
-            System.out.println(e.toString());
+            System.out.println("Ha sucedido un error: \n" + e.toString());
         }
     }
 }
-
 

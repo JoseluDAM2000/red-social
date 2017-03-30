@@ -20,7 +20,7 @@ public class Prueba
     private EntradaFoto entradaF2;
     private EntradaUnionAGrupo entradaU1;
     private EntradaUnionAGrupo entradaU2;
-
+    
     /**
      * Default constructor for test class Prueba
      */
@@ -49,6 +49,18 @@ public class Prueba
         muro1.addEntrada(entradaT1);
         muro1.addEntrada(entradaU2);
         muro1.addEntrada(entradaT2);
+        entradaF2.addComentario("¡Que bonito el gatito!");
+        entradaF2.meGusta();
+        entradaF2.meGusta();
+        entradaF2.meGusta();
+        entradaF2.meGusta();
+        entradaF2.meGusta();
+        entradaF2.meGusta();
+        entradaF2.meGusta();
+        entradaF2.meGusta();
+        entradaF2.meGusta();
+        entradaF2.meGusta();
+        entradaF2.meGusta();
     }
 
     /**
