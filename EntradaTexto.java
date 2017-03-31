@@ -18,6 +18,11 @@ public class EntradaTexto extends EntradaConComentario
         mensaje = texto;
     }
     
+//     public EntradaTexto(String autor, String momentoPublicacion, String texto, String comentarios)
+//     {
+//         mensaje = texto;
+//     }
+    
     /**
      * 
      */

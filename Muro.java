@@ -198,24 +198,34 @@ public class Muro
         catch (Exception e) {
             System.out.println("Ha sucedido un error: \n" + e.toString());
         }
+        
+        
     }
-
+    
     public void mostrarMuroEnNavegador(String user)
     {
-        goToURL("https://script.google.com/macros/s/AKfycbzHc3p1twTfyF7o0_cxSwnxSsyOemuHnSu406ly9DZIf5Ck2BA/exec?user=" + user);
-
-    }
-
-    private void goToURL(String URL){
-        if (java.awt.Desktop.isDesktopSupported()) {
-            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
-            if (desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
-                try {
-                    java.net.URI uri = new java.net.URI(URL);
-                    desktop.browse(uri);
-                } catch (Exception e) {
-                }
+        try{
+            File apiRedSocial = new File("https://script.google.com/macros/s/AKfycbzHc3p1twTfyF7o0_cxSwnxSsyOemuHnSu406ly9DZIf5Ck2BA/exec?user=" + user);
+            Scanner sc = new Scanner(apiRedSocial);
+            String[] entradaActual = sc.nextLine().split(";");
+            entradas.clear();
+            switch(entradaActual[0]){
+                case "EntradaUnionAGrupo":
+                EntradaUnionAGrupo entradaUnionAGrupo = new EntradaUnionAGrupo(entradaActual[1],Integer.parseInt(entradaActual[2]),entradaActual[3],entradaActual[4]);
+                entradas.add(entradaUnionAGrupo);
+                break;
+                case "EntradaTexto":
+                EntradaTexto entradaTexto = new EntradaTexto("","");
+                break;
+                case "EntradaFoto":
+                
             }
+            
+            
+            sc.close();
+        }
+        catch(Exception e){
+            
         }
     }
 }

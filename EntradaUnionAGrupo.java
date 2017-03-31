@@ -18,6 +18,12 @@ public class EntradaUnionAGrupo extends Entrada
         System.out.println(usuario + " se unió al grupo: " + grupo);
     }
     
+    public EntradaUnionAGrupo(String usuario, int meGusta, String momentoPublicacion, String grupo)
+    {
+        super(usuario, momentoPublicacion, meGusta);
+        this.grupo = grupo;
+    }
+    
     public String toString()
     {
         String valorDeRetorno = super.toString();

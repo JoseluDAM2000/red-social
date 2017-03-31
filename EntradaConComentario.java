@@ -16,6 +16,12 @@ public abstract class EntradaConComentario extends Entrada
         comentarios = new ArrayList<String>();
     }
 
+    public EntradaConComentario(String autor, int meGusta, String momentoPublicacion) 
+    {
+        super(autor, momentoPublicacion, meGusta);
+        comentarios = new ArrayList<String>();
+    }
+    
     /**
      * 
      */
