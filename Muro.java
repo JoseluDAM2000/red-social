@@ -113,9 +113,12 @@ public class Muro
                         while (sc2.hasNextLine()){
                             lineaActual = sc2.nextLine();
                             int lineasDesplazadas = 0;
-                            if(!entradaActual.getClass().getSimpleName().equals("EntradaUnionAGrupo")){
-                                EntradaConComentario entradaAux = (EntradaConComentario) entradaActual;
-                                lineasDesplazadas = entradaAux.getComentarios().size();
+                            switch(entradaActual.getClass().getSimpleName()){
+                                case "EntradaFoto":
+                                lineasDesplazadas = lineasEntradaActual.length - 6;
+                                break;
+                                case "EntradaTexto":
+                                lineasDesplazadas = lineasEntradaActual.length - 5;
                             }
                             if(lineaActual.contains("Super") || lineaActual.contains(entradaActual.getClass().getSimpleName())){
                                 boolean comprobar = true;
@@ -159,14 +162,22 @@ public class Muro
                                     comprobar = false;
                                 }
                                 if(lineaActual.contains("ENTRADACOMENTARIOS") && comprobar){
-                                    EntradaConComentario entradaAux = (EntradaConComentario) entradaActual;
-                                    if(entradaAux.getComentarios().size() != 0){
-                                        lineaActual = "";
-                                        for(String comentario:entradaAux.getComentarios()){
-                                            lineaActual += "&#8226;" + comentario + "<br>\n";
+                                    lineaActual = lineasEntradaActual[2] + "<br>\n";;
+                                    switch(entradaActual.getClass().getSimpleName()){
+                                        case "EntradaFoto":
+                                        if(lineasEntradaActual.length != 6){
+                                            for(int lineaComentario = 3; lineaComentario < lineasDesplazadas + 3;lineaComentario++){
+                                                lineaActual += "&#8226;" + lineasEntradaActual[lineaComentario] + "<br>\n";
+                                            }
                                         }
-                                    }else{
-                                        lineaActual = lineasEntradaActual[2];
+                                        break;
+                                        case "EntradaTexto":
+                                        if(lineasEntradaActual.length != 5){
+                                            for(int lineaComentario = 3; lineaComentario < lineasDesplazadas + 3;lineaComentario++){
+                                                lineaActual += "&#8226;" + lineasEntradaActual[lineaComentario] + "<br>\n";
+                                            }
+                                        }
+                                        lineasDesplazadas = lineasEntradaActual.length - 5;
                                     }
                                     comprobar = false;
                                 }
@@ -181,14 +192,11 @@ public class Muro
             }
             sc1.close();
             archivo.close();
-
             File htmlFile = new File(rutaArchivo.toString());
             Desktop.getDesktop().browse(htmlFile.toURI());
-
         }
         catch (Exception e) {
             System.out.println("Ha sucedido un error: \n" + e.toString());
         }
     }
 }
-
