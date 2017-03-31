@@ -199,4 +199,23 @@ public class Muro
             System.out.println("Ha sucedido un error: \n" + e.toString());
         }
     }
+
+    public void mostrarMuroEnNavegador(String user)
+    {
+        goToURL("https://script.google.com/macros/s/AKfycbzHc3p1twTfyF7o0_cxSwnxSsyOemuHnSu406ly9DZIf5Ck2BA/exec?user=" + user);
+
+    }
+
+    private void goToURL(String URL){
+        if (java.awt.Desktop.isDesktopSupported()) {
+            java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+            if (desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
+                try {
+                    java.net.URI uri = new java.net.URI(URL);
+                    desktop.browse(uri);
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
 }

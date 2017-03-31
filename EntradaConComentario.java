@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * 
  */
-public class EntradaConComentario extends Entrada
+public abstract class EntradaConComentario extends Entrada
 {
     private ArrayList<String> comentarios;
 
