@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.awt.Desktop;
+import java.net.URL;
 
 /**
  * 
@@ -83,11 +84,9 @@ public class Muro
 
                     default:
                 }
-
                 if(entradaActual.getClass().getSimpleName() == tipoDeEntrada || tipoDeEntrada == null){
                     valorDeRetorno += valorActual;
                 }
-
             }
             contador++;
         }
@@ -187,6 +186,16 @@ public class Muro
                         sc2.close();
                         lineaActual = "";
                     }
+                    if(entradas.size()==0){
+                        File plantilla404 = new File("recursos/404.html");
+                        Scanner sc3 = new Scanner(plantilla404);
+                        while (sc3.hasNextLine()){
+                            lineaActual = sc3.nextLine();
+                            archivo.write(lineaActual);
+                        }
+                        lineaActual = "";
+                        sc3.close();
+                    }
                 }
                 archivo.write(lineaActual);
             }
@@ -198,34 +207,35 @@ public class Muro
         catch (Exception e) {
             System.out.println("Ha sucedido un error: \n" + e.toString());
         }
-        
-        
     }
-    
+
     public void mostrarMuroEnNavegador(String user)
     {
         try{
-            File apiRedSocial = new File("https://script.google.com/macros/s/AKfycbzHc3p1twTfyF7o0_cxSwnxSsyOemuHnSu406ly9DZIf5Ck2BA/exec?user=" + user);
-            Scanner sc = new Scanner(apiRedSocial);
-            String[] entradaActual = sc.nextLine().split(";");
+            URL urlApiRedSocial = new URL("https://script.google.com/macros/s/AKfycbzHc3p1twTfyF7o0_cxSwnxSsyOemuHnSu406ly9DZIf5Ck2BA/exec?user=" + user);
+            Scanner sc = new Scanner(urlApiRedSocial.openStream());
             entradas.clear();
-            switch(entradaActual[0]){
-                case "EntradaUnionAGrupo":
-                EntradaUnionAGrupo entradaUnionAGrupo = new EntradaUnionAGrupo(entradaActual[1],Integer.parseInt(entradaActual[2]),entradaActual[3],entradaActual[4]);
-                entradas.add(entradaUnionAGrupo);
-                break;
-                case "EntradaTexto":
-                EntradaTexto entradaTexto = new EntradaTexto("","");
-                break;
-                case "EntradaFoto":
-                
+            while(sc.hasNext()){
+                String[] entradaActual = sc.nextLine().split(";");
+                switch(entradaActual[0]){
+                    case "EntradaUnionAGrupo":
+                    EntradaUnionAGrupo entradaUnionAGrupo = new EntradaUnionAGrupo(entradaActual[1],Integer.parseInt(entradaActual[2]),entradaActual[3],entradaActual[4]);
+                    entradas.add(entradaUnionAGrupo);
+                    break;
+                    case "EntradaTexto":
+                    EntradaTexto entradaTexto = new EntradaTexto(entradaActual[1],Integer.parseInt(entradaActual[2]),entradaActual[3],entradaActual[4],entradaActual[5]);
+                    entradas.add(entradaTexto);
+                    break;
+                    case "EntradaFoto":
+                    EntradaFoto entradaFoto = new EntradaFoto(entradaActual[1],Integer.parseInt(entradaActual[2]),entradaActual[3],entradaActual[4],entradaActual[5], entradaActual[6]);
+                    entradas.add(entradaFoto);
+                }
             }
-            
-            
             sc.close();
+            mostrarMuroEnNavegador();
         }
         catch(Exception e){
-            
+            System.out.println("Ha sucedido un error: \n" + e.toString());
         }
     }
 }

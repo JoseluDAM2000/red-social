@@ -18,10 +18,11 @@ public class EntradaTexto extends EntradaConComentario
         mensaje = texto;
     }
     
-//     public EntradaTexto(String autor, String momentoPublicacion, String texto, String comentarios)
-//     {
-//         mensaje = texto;
-//     }
+    public EntradaTexto(String autor,int cantidadMeGusta ,String momentoPublicacion, String texto, String comentarios)
+    {
+        super(autor, momentoPublicacion, cantidadMeGusta, comentarios);
+        mensaje = texto;
+    }
     
     /**
      * 

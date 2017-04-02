@@ -24,14 +24,14 @@ public abstract class Entrada
         cantidadMeGusta = 0;
     }
 
-    public Entrada(String autor, String momentoPublicacion, int meGusta)
+    public Entrada(String autor, String momentoPublicacion, int cantidadMeGusta)
     {
         usuario = autor;
         String[] fechaHora = momentoPublicacion.split("-");
         String[] fecha = fechaHora[0].split("/");
         String[] hora = fechaHora[1].split(":");
         this.momentoPublicacion = LocalDateTime.of(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[0]), Integer.parseInt(hora[0]), Integer.parseInt(hora[1]));
-        cantidadMeGusta = meGusta;
+        this.cantidadMeGusta = cantidadMeGusta;
     }
 
     /**
