@@ -205,7 +205,7 @@ public class Muro
             Desktop.getDesktop().browse(htmlFile.toURI());
         }
         catch (Exception e) {
-            System.out.println("Ha sucedido un error: \n" + e.toString());
+            System.out.println("Ha sucedido un error al cargar la pagina: \n" + e.toString());
         }
     }
 
@@ -235,7 +235,7 @@ public class Muro
             mostrarMuroEnNavegador();
         }
         catch(Exception e){
-            System.out.println("Ha sucedido un error: \n" + e.toString());
+            System.out.println("Ha sucedido un error al conectarse al servidor: \n" + e.toString());
         }
     }
 }

@@ -64,12 +64,28 @@ public abstract class Entrada
     {
         String valorDeRetorno =  getUsuario() + " hace ";
         long segundosTranscurridos = (getMomentoPublicacion().until(LocalDateTime.now(), ChronoUnit.SECONDS));
+        String valorMasDeUnDia = "";
         if (segundosTranscurridos > 59) {
             long minutosTranscurridos = segundosTranscurridos/60;
             segundosTranscurridos = segundosTranscurridos%60;
-            valorDeRetorno += minutosTranscurridos + " minutos ";
+            if(minutosTranscurridos > 59){
+                long horasTranscurridas = minutosTranscurridos/60;
+                minutosTranscurridos = minutosTranscurridos%60;
+                if(horasTranscurridas > 24){
+                    long diasTranscurridos = horasTranscurridas/24;
+                    horasTranscurridas = horasTranscurridas%24;
+                    valorDeRetorno += diasTranscurridos + " dias.\n";
+                    valorMasDeUnDia = valorDeRetorno;
+                }
+                valorDeRetorno += horasTranscurridas + " horas ";
+            }
+            valorDeRetorno += minutosTranscurridos + " minutos y ";
         }
-        valorDeRetorno += segundosTranscurridos + " segundos \n" + getCantidadMeGusta() + " Me gusta. \n";
+        valorDeRetorno += segundosTranscurridos + " segundos \n";
+        if(valorMasDeUnDia.length() > 0){
+            valorDeRetorno = valorMasDeUnDia;
+        }
+        valorDeRetorno += getCantidadMeGusta() + " Me gusta. \n";
         return valorDeRetorno;
     }
 
