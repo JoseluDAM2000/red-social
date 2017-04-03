@@ -117,6 +117,12 @@ ul.skills li:last-child{
            height: 297mm;
 }
 
+.centrarImagen
+{
+text-align:center;
+display:block;
+}
+
 @page { size: A4;
         margin: 0;
 }

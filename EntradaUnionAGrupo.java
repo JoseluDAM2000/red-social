@@ -11,11 +11,17 @@ public class EntradaUnionAGrupo extends Entrada
     /**
      * Constructor for objects of class EntradaUnionAGrupo
      */
-    public EntradaUnionAGrupo(String usuario, String grupo)
+    public EntradaUnionAGrupo(String autor, String grupo)
     {
-        super(usuario);
+        super(autor);
         this.grupo = grupo;
-        System.out.println(usuario + " se unió al grupo: " + grupo);
+        System.out.println(autor + " se unió al grupo: " + grupo);
+    }
+    
+    public EntradaUnionAGrupo(String autor, int cantidadMeGusta, String momentoPublicacion, String grupo)
+    {
+        super(autor, momentoPublicacion, cantidadMeGusta);
+        this.grupo = grupo;
     }
     
     public String toString()

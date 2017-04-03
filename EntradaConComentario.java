@@ -16,6 +16,18 @@ public abstract class EntradaConComentario extends Entrada
         comentarios = new ArrayList<String>();
     }
 
+    public EntradaConComentario(String autor, String momentoPublicacion, int cantidadMeGusta, String comentarios) 
+    {
+        super(autor, momentoPublicacion, cantidadMeGusta);
+        this.comentarios = new ArrayList<String>();
+        if(!comentarios.equals("Sin comentarios")){
+            String[] comentariosDivididos = comentarios.split("%");
+            for(String comentarioActual: comentariosDivididos){
+                this.comentarios.add(comentarioActual);
+            }
+        }
+    }
+    
     /**
      * 
      */
